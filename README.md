@@ -1,0 +1,1 @@
+# to.pinf.org.mozilla.web-ext
