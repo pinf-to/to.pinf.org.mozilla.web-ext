@@ -45,7 +45,7 @@ CALL_webext run {
                             console.log("RESULTS:", JSON.stringify(results, null, 4))
 
                             if (!process.env.BO_TEST_FLAG_DEV) {
-                                API.stop();
+                                API.SERVER.stop();
                             }
                         }
                     }
