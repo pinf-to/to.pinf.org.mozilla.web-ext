@@ -1,0 +1,22 @@
+Adding route: /^\//
+Adding route: /scripts/worker.js
+>>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<
+<RESULTS>
+{
+    "worker": {
+        "suites": 3,
+        "tests": 1,
+        "passes": 1,
+        "pending": 0,
+        "failures": 0,
+    },
+    "page": {
+        "suites": 3,
+        "tests": 1,
+        "passes": 1,
+        "pending": 0,
+        "failures": 0,
+    }
+}
+</RESULTS>
+OK
