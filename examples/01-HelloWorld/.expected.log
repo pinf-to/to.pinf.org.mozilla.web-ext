@@ -1,5 +1,4 @@
-Adding route: /^\/$/
-Adding route: /^\/.result$/
+Adding route: /^\//
 Adding route: /scripts/bg-worker1.js
 Adding route: /scripts/bg-worker2.js
 RESULTS: {
