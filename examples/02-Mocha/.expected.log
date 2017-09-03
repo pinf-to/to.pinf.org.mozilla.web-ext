@@ -3,14 +3,14 @@ Adding route: /scripts/worker.js
 >>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<
 <RESULTS>
 {
-    "worker": {
+    "page": {
         "suites": 3,
         "tests": 1,
         "passes": 1,
         "pending": 0,
         "failures": 0,
     },
-    "page": {
+    "worker": {
         "suites": 3,
         "tests": 1,
         "passes": 1,
