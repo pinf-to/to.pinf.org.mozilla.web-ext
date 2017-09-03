@@ -1,12 +1,14 @@
 
-console.log("INIT!!", window.PINF, PINF, %%%BACKGROUND_SCRIPTS%%%);
+const WINDOW = window;
 
-/*
-PINF.sandbox("http://localhost:8081/components/main.js", function (sandbox) {
+%%%BACKGROUND_SCRIPTS%%%.forEach(function (script) {
 
-console.log("CALL MAIN");
+    const url = "scripts/" + script;
 
-    sandbox.main();
+    WINDOW.PINF.sandbox(url, function (sandbox) {
 
-}, console.error);
-*/
+        sandbox.main();
+
+    }, console.error);
+
+});

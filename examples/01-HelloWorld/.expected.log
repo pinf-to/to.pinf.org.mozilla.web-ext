@@ -1,0 +1,10 @@
+Adding route: /^\/$/
+Adding route: /^\/.result$/
+Adding route: /scripts/bg-worker1.js
+Adding route: /scripts/bg-worker2.js
+RESULTS: {
+    "page": "all good",
+    "bg-worker1": "all good",
+    "bg-worker2": "all good"
+}
+OK
