@@ -18,9 +18,46 @@ CALL_webext run {
         }
     },
     "routes": {
-        "^/$": function /* CodeBlock */ (API) {
+        "^/": function /* CodeBlock */ (API) {
+
+            var results = {
+                "page": null,
+                "bg-worker1": null,
+                "bg-worker2": null
+            };
 
             return function (req, res, next) {
+
+                if (/^\/\.result$/.test(req.url)) {
+
+                    var allResultsIn = false;
+                    function recordResult (name, value) {
+
+                        results[name] = value;
+
+                        if (
+                            Object.keys(results).filter(function (suite) {
+                                return (!results[suite]);
+                            }).length === 0 &&
+                            !allResultsIn
+                        ) {
+                            allResultsIn = true;
+                            console.log("RESULTS:", JSON.stringify(results, null, 4))
+
+                            if (!process.env.BO_TEST_FLAG_DEV) {
+                                API.stop();
+                            }
+                        }
+                    }
+
+                    recordResult(req.body.suite, req.body.result);
+
+                    res.writeHead(200, {
+                        "Content-Type": "application/json"
+                    });
+                    res.end('{}');
+                }
+
                 res.end(`
                     <html>
                         <body>OK!</body>
@@ -39,41 +76,6 @@ CALL_webext run {
                         </script>
                     </html>
                 `);
-            };
-        },
-        "^/.result$": function /* CodeBlock */ (API) {
-
-            const results = {
-                "page": null,
-                "bg-worker1": null,
-                "bg-worker2": null
-            };
-            var allResultsIn = false;
-            function recordResult (name, value) {
-                results[name] = value;
-                if (
-                    Object.keys(results).filter(function (suite) {
-                        return (!results[suite]);
-                    }).length === 0 &&
-                    !allResultsIn
-                ) {
-                    allResultsIn = true;
-                    console.log("RESULTS:", JSON.stringify(results, null, 4))
-
-                    if (!process.env.BO_TEST_FLAG_DEV) {
-                        API.stop();
-                    }
-                }
-            }
-
-            return function (req, res, next) {
-
-                recordResult(req.body.suite, req.body.result);
-
-                res.writeHead(200, {
-                    "Content-Type": "application/json"
-                });
-                res.end('{}');
             };
         }
     }
