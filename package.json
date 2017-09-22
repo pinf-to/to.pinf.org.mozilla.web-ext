@@ -4,6 +4,7 @@
   "dependencies": {
     "bash.origin.test": "^0.1.28",
     "codeblock": "^0.2.9",
+    "eventemitter2": "^4.1.2",
     "fs-extra": "^2.1.2",
     "get-port": "^3.2.0",
     "lodash": "^4.17.4",

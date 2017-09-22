@@ -18,3 +18,7 @@ function EXPORTS_run {
 
     CALL_webext_it run "$runConfig"
 }
+
+function EXPORTS_sign {
+    CALL_webext_it sign "$@"
+}

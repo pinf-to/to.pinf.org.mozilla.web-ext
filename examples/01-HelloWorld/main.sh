@@ -44,7 +44,9 @@ CALL_webext run {
                             allResultsIn = true;
                             console.log("RESULTS:", JSON.stringify(results, null, 4))
 
-                            if (!process.env.BO_TEST_FLAG_DEV) {
+                            if (process.env.BO_TEST_FLAG_DEV) {
+                                console.log("NOTE: Leaving browser open due to '--dev'.");
+                            } else {
                                 API.SERVER.stop();
                             }
                         }
