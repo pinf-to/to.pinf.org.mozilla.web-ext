@@ -1,17 +1,17 @@
 {
-  "name": "to.pinf.org.mozilla.web-ext",
-  "version": "0.1.0",
-  "dependencies": {
-    "bash.origin.test": "^0.1.35",
-    "codeblock": "^0.3.6",
-    "eventemitter2": "^4.1.2",
-    "fs-extra": "^2.1.2",
-    "get-port": "^3.2.0",
-    "lodash": "^4.17.4",
-    "minimist": "^1.2.0",
-    "pinf-for-mozilla-web-ext": "^0.1.2"
-  },
-  "scripts": {
-    "test": "BO_ROOT_SCRIPT_PATH=$(pwd)/node_modules/bash.origin/bash.origin bash.origin.test examples"
-  }
+    "name": "to.pinf.org.mozilla.web-ext",
+    "version": "0.1.1",
+    "dependencies": {
+        "bash.origin.test": "^0.1.35",
+        "codeblock": "^0.3.6",
+        "eventemitter2": "^4.1.2",
+        "fs-extra": "^2.1.2",
+        "get-port": "^3.2.0",
+        "lodash": "^4.17.4",
+        "minimist": "^1.2.0",
+        "pinf-for-mozilla-web-ext": "^0.1.2"
+    },
+    "scripts": {
+        "test": "BO_ROOT_SCRIPT_PATH=$(pwd)/node_modules/bash.origin/bash.origin bash.origin.test examples"
+    }
 }
