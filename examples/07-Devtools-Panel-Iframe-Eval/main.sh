@@ -71,6 +71,9 @@ console.log("Hello from page!!");
             }
         }
     },
+    "files": {
+        "frame.html": "./frame.html"
+    },
     "expect": {
         "exit": true,
         "conditions": [

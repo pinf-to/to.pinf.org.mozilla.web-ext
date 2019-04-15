@@ -4,10 +4,12 @@
     "pm": {
         "publish": "npm"
     },
-    "dependencies": {
-        "bash.origin.workspace": "^0.2.68",
-        "eventemitter2": "^4.1.2",
+    "__dependencies": {
+        "bash.origin.lib": "",
         "pinf-for-mozilla-web-ext": "^0.1.4"
+    },
+    "dependencies": {
+        "eventemitter2": "^4.1.2"
     },
     "scripts": {
         "test": "bash.origin.test examples"

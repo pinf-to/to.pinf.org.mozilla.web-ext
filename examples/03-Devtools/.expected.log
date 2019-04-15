@@ -1,3 +1,13 @@
+>>>TEST_IGNORE_LINE:\[it.pinf.org.mozilla.web-ext\]<<<
+  extension:
+   'TeStLoCaLiZeD/.~rt/github.com~pinf-to~to.pinf.org.mozilla.web-ext/extension.built',
+  browserConsole: true,
+  firefoxVersion: 'firefox',
+  verbose: true,
+  routes:
+   { '^/': { '@it.pinf.org.mochajs#s1': [Object] },
+     '/scripts/devtools.js': { '@it.pinf.org.mochajs#s1': [Object] } },
+  expect: { exit: true, conditions: [ [Object] ] },
 Adding route: /^\//
 Adding route: /scripts/devtools.js
 >>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<

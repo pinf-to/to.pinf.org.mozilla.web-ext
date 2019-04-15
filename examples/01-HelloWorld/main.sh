@@ -73,8 +73,8 @@ CALL_webext run {
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({
-                                    suite: "page",
-                                    result: "all good"
+                                    suite: 'page',
+                                    result: 'all good'
                                 })
                             });
                         </script>

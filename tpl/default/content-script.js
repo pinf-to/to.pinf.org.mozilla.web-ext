@@ -66,10 +66,10 @@ window.addEventListener("message", function(event) {
 
     const url = "scripts/" + script;
 
-    fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/pinf-loader.js").then(function (code1) {
+    fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/lib/pinf-loader-full.browser.js").then(function (code1) {
         return fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/loader.js").then(function (code2) {
             return fetchURL(url).then(function (code) {
-                
+
                 WINDOW.eval([
                     code1,
                     code2,
@@ -81,8 +81,13 @@ window.addEventListener("message", function(event) {
                         '    data: JSON.stringify(data)',
                         '}, "*");',
                     '}',
-                    'var implementation = function () {',
+                    'function memoize (PINF) {',
                     code,
+                    '}',
+                    'var implementation = function (require) {',
+                        'memoize({ bundle: function (id, memoizations) {',
+                            'memoizations(require);',
+                        '}});',
                     '}',
                     'window.PINF.sandbox(implementation, function (sandbox) {',
                         'sandbox.main();',

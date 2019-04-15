@@ -1,5 +1,8 @@
 #!/usr/bin/env bash.origin.script
 
+echo ">>>TEST_IGNORE_LINE:port:<<<"
+echo ">>>TEST_IGNORE_LINE:\[it.pinf.org.mozilla.web-ext\]<<<"
+
 depend {
     "webext": "@com.github/pinf-to/to.pinf.org.mozilla.web-ext#s1"
 }
