@@ -1,10 +1,14 @@
 #!/usr/bin/env bash.origin.script
 
+echo "WARNING: Work in progress."
+
+echo ">>>SKIP_TEST<<<"
+
+exit 1
+
 depend {
     "webext": "@com.github/pinf-to/to.pinf.org.mozilla.web-ext#s1"
 }
-
-echo "WARNING: Work in progress."
 
 CALL_webext run {
     "manifest": {
