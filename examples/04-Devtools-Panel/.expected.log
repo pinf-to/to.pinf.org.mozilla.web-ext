@@ -6,10 +6,10 @@
   verbose: true,
   routes:
    { '^/': { '@it.pinf.org.mochajs#s1': [Object] },
-     '/scripts/devtools.js': { '@it.pinf.org.mochajs#s1': [Object] } },
+     '/scripts/devtools/index.js': { '@it.pinf.org.mochajs#s1': [Object] } },
   expect: { exit: true, conditions: [ [Object] ] },
 Adding route: /^\//
-Adding route: /scripts/devtools.js
+Adding route: /scripts/devtools/index.js
 >>>TEST_IGNORE_LINE:"(start|end|duration)": (".*Z"|[\d]+),?s*$<<<
 <RESULTS>
 {

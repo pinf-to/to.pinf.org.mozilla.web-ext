@@ -16,7 +16,7 @@ CALL_webext run {
         "devtools": {
             "panels": [
                 {
-                    "devtools.js": {
+                    "devtools/index.js": {
                         "label": "My Panel",
                         "icon": "box.png",
                         "code": {
