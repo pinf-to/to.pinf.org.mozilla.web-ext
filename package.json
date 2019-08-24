@@ -1,17 +1,15 @@
 {
-    "name": "to.pinf.org.mozilla.web-ext",
-    "version": "0.1.7",
-    "pm": {
-        "publish": "npm"
-    },
-    "__dependencies": {
-        "bash.origin.lib": "",
-        "pinf-for-mozilla-web-ext": "^0.1.4"
-    },
-    "dependencies": {
-        "eventemitter2": "^4.1.2"
-    },
-    "scripts": {
-        "test": "bash.origin.test examples"
-    }
+  "name": "to.pinf.org.mozilla.web-ext",
+  "version": "0.2.0-pre.0",
+  "pm": {
+    "publish": "npm"
+  },
+  "dependencies": {
+    "eventemitter2": "^4.1.2",
+    "pinf-for-mozilla-web-ext": "^0.2.0-pre.0",
+    "bash.origin.lib": "^0.4.0-pre.0"
+  },
+  "scripts": {
+    "test": "bash.origin.test examples"
+  }
 }

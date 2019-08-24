@@ -1,6 +1,6 @@
 
 const WINDOW = window;
-const BROWSER = browser;
+const BROWSER = (typeof browser != "undefined") ? browser : chrome;
 
 var index = 0;
 function fetchURL (url) {
@@ -62,38 +62,42 @@ window.addEventListener("message", function(event) {
     }
 });
 
-%%%CONTENT_SCRIPTS%%%.forEach(function (script) {
+function init () {
+    %%%CONTENT_SCRIPTS%%%.forEach(function (script) {
 
-    const url = "scripts/" + script;
+        const url = "scripts/" + script;
 
-    fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/lib/pinf-loader-full.browser.js").then(function (code1) {
-        return fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/loader.js").then(function (code2) {
-            return fetchURL(url).then(function (code) {
+        fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/lib/pinf-loader-full.browser.js").then(function (code1) {
+            return fetchURL("lib/github.com~pinf~pinf-for-mozilla-web-ext/scripts/loader.js").then(function (code2) {
+                return fetchURL(url).then(function (code) {
 
-                WINDOW.eval([
-                    code1,
-                    code2,
-                    'window.__postJSON = function (url, data) {',
-                        'window.postMessage({',
-                        '    to: "content-script:__postJSON",',
-                        '    from: "page-script",',
-                        '    url: url,',
-                        '    data: JSON.stringify(data)',
-                        '}, "*");',
-                    '}',
-                    'function memoize (PINF) {',
-                    code,
-                    '}',
-                    'var implementation = function (require) {',
-                        'memoize({ bundle: function (id, memoizations) {',
-                            'memoizations(require);',
-                        '}});',
-                    '}',
-                    'window.PINF.sandbox(implementation, function (sandbox) {',
-                        'sandbox.main();',
-                    '}, console.error);'    
-                ].join("\n"));
+                    WINDOW.eval([
+                        code1,
+                        code2,
+                        'window.__postJSON = function (url, data) {',
+                            'window.postMessage({',
+                            '    to: "content-script:__postJSON",',
+                            '    from: "page-script",',
+                            '    url: url,',
+                            '    data: JSON.stringify(data)',
+                            '}, "*");',
+                        '}',
+                        'function memoize (PINF) {',
+                        code,
+                        '}',
+                        'var implementation = function (require) {',
+                            'memoize({ bundle: function (id, memoizations) {',
+                                'memoizations(require);',
+                            '}});',
+                        '}',
+                        'window.PINF.sandbox(implementation, function (sandbox) {',
+                            'sandbox.main();',
+                        '}, console.error);'    
+                    ].join("\n"));
+                });
             });
         });
     });
-});
+}
+
+setTimeout(init, 250);
