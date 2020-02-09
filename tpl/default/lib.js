@@ -60,6 +60,13 @@
         }
     };
 
+    if (BROWSER.webRequest) {
+        WINDOW.crossbrowser.webRequest = {
+            onBeforeSendHeaders: BROWSER.webRequest.onBeforeSendHeaders,
+            onHeadersReceived: BROWSER.webRequest.onHeadersReceived
+        };
+    }
+
     if (BROWSER.devtools) {
         WINDOW.crossbrowser.devtools = {
             inspectedWindow: {},

@@ -7,7 +7,7 @@
   "dependencies": {
     "eventemitter2": "^4.1.2",
     "pinf-for-mozilla-web-ext": "^0.2.0-pre.0",
-    "bash.origin.lib": "^0.4.0-pre.0"
+    "bash.origin.lib": "^0.4.0-pre.10"
   },
   "scripts": {
     "test": "bash.origin.test examples"
