@@ -1,0 +1,9 @@
+[to.pinf.org.mozilla.web-ext:builder] Adding route: /^\//
+[to.pinf.org.mozilla.web-ext:builder] Adding route: /scripts/bg-worker1.js
+[to.pinf.org.mozilla.web-ext:builder] Adding route: /scripts/bg-worker2.js
+[to.pinf.org.mozilla.web-ext:builder] RESULTS: {
+    "page": "all good",
+    "bg-worker1": "all good",
+    "bg-worker2": "all good"
+}
+OK

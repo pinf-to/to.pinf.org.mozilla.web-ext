@@ -1,24 +1,37 @@
-#!/usr/bin/env bash.origin.script
+#!/usr/bin/env inf
+{
+    "#": "gi0.PINF.it/core/v0",
 
-depend {
-    "webext": "@com.github/pinf-to/to.pinf.org.mozilla.web-ext#s1"
-}
+    "#": {
+        "builder": "to.pinf.org.mozilla.web-ext",
+        "runner": "it.pinf.org.mozilla.web-ext"
+    },
 
-CALL_webext run {
-    "manifest": {
+    ":builder:": "builder @ builder/v0",
+    ":runner:": "runner @ runner/v0",
+
+
+    "gi0.PINF.it/core/v0 @ # :builder: set() manifest": {
         "permissions": [
             "webRequest",
             "<all_urls>"
         ],
         "background": {
             "scripts": [
-                "bg-worker1.js",
-                "bg-worker2.js"
+                {
+                    "uri": "bg-worker1.js",
+                    "src": "../01-HelloWorld/bg-worker1.js"
+                },
+                {
+                    "uri": "bg-worker2.js",
+                    "src": "../01-HelloWorld/bg-worker2.js"
+                }
             ]
         }
     },
-    "routes": {
-        "^/": function /* CodeBlock */ (API) {
+
+    "gi0.PINF.it/core/v0 @ # :builder: set() routes": {
+        "^/": (javascript (API) >>>
 
             var results = {
                 "page": null,
@@ -79,8 +92,13 @@ CALL_webext run {
                     </html>
                 `);
             };
-        }
-    }
-}
+        <<<)
+    },
 
-echo "OK"
+    "gi0.PINF.it/core/v0 @ # :builder: write() /.~/extension.built": "",
+
+
+    "gi0.PINF.it/core/v0 @ # :runner: set() extensionPath": "/.~/extension.built",
+
+    "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+}

@@ -4,8 +4,6 @@ depend {
     "webext": "@com.github/pinf-to/to.pinf.org.mozilla.web-ext#s1"
 }
 
-echo "TEST_MATCH_IGNORE>>>"
-
 CALL_webext run {
     "manifest": {
         "permissions": [
@@ -71,7 +69,5 @@ CALL_webext run {
         ]
     }
 }
-
-echo "<<<TEST_MATCH_IGNORE"
 
 echo "OK"
