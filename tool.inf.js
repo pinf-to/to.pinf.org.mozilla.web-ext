@@ -12,7 +12,7 @@ exports['gi0.pinf.it/core/v0/tool'] = async function (workspace, LIB) {
                 if (invocation.method === 'write') {
 
                     if (invocation.config.manifest.dist) {
-                        LIB.logger.error(`'manifest.dist' config property may not be set!`);
+                        LIB.console.error(`'manifest.dist' config property may not be set!`);
                         process.exit(1);
                     }
 

@@ -95,6 +95,14 @@
         <<<)
     },
 
+    "gi0.PINF.it/core/v0 @ # :builder: set() postbuild": (javascript (LIB) >>>
+
+        return async function () {
+
+            console.log("Run postbuild.");
+        };
+    <<<),
+
     "gi0.PINF.it/core/v0 @ # :builder: write() /.~/extension.built": "",
 
 
