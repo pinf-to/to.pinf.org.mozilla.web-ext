@@ -8,7 +8,7 @@
     "eventemitter2": "^4.1.2",
     "git-branch": "^2.0.1",
     "pinf-for-mozilla-web-ext": "^0.2.0-pre.0",
-    "bash.origin.lib": "^0.4.0-pre.10"
+    "bash.origin.lib": "^0.4.0-pre.20"
   },
   "scripts": {
     "test": "bash.origin.test examples"

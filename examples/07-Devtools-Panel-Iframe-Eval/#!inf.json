@@ -1,0 +1,119 @@
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.extension.built": "to.pinf.org.mozilla.web-ext",
+        "runner": "it.pinf.org.mozilla.web-ext"
+    },
+    ":builder:": "/.extension.built @ builder/v1",
+    ":runner:": "runner @ runner/v0",
+
+    "gi0.PINF.it/build/v0 @ # /.extension.built": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder: build() /": {
+                "homepage": "/testpage/index.html",
+                "port": 3000,
+                "manifest": {
+                    "permissions": [
+                        "webRequest",
+                        "<all_urls>"
+                    ],
+                    "content_security_policy": "script-src 'self'; object-src 'self'; img-src 'self'",
+                    "devtools": {
+                        "panels": [
+                            {
+                                "devtools.js": {
+                                    "label": "My Panel",
+                                    "icon": "box.png",
+                                    "code": {
+                                        "gi0.PINF.it/build/v0 # /scripts # /": {
+                                            "@it.pinf.org.mochajs # router/v1": {
+                                                "suite": "devtools",
+                                                "indexFilename": "devtools",
+                                                "indexFormat": "js",
+                                                "apiBaseUrl": "http://127.0.0.1:3000/testpage",
+                                                "tests": {
+                                                    "01-HelloWorld": function /* CodeBlock */ () {
+                
+                                                        console.log("Hello from Devtools Panel!!");
+                                                        
+var el = document.createElement("iframe");
+el.setAttribute("width", "100%");
+el.setAttribute("height", "400");
+// TODO: Set correct URL to load 'frame.html' from github.
+el.setAttribute("src", "./frame.html");
+document.body.appendChild(el);
+                
+                                                        describe('Array', function () {
+                                                            describe('#indexOf()', function () {
+                
+                                                                it('should return -1 when the value is not present', function () {
+                                                                    chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                                });
+                                                            });
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "routes": {
+                    "^/testpage/": {
+                        "gi0.PINF.it/build/v0 # /testpage # /": {
+                            "@it.pinf.org.mochajs # router/v1": {
+                                "suite": "page",
+                                "tests": {
+                                    "01-HelloWorld": function /* CodeBlock */ () {
+                
+                                        console.log("Hello from page!!");
+
+                                        describe('Array', function () {
+                                            describe('#indexOf()', function () {
+                
+                                                it('should return -1 when the value is not present', function () {
+                                                    chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                });
+                                            });
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "files": {
+                    "frame.html": "./frame.html"
+                },
+                "expect": {
+                    "exit": true,
+                    "conditions": [
+                        {
+                            "gi0.PINF.it/build/v0 # /testpage # /": {
+                                "@it.pinf.org.mochajs # expect/v1": {
+                                    "wait": true,
+                                    "suites": [
+                                        "devtools",
+                                        "page"
+                                    ]
+                                }
+                            }
+                        }        
+                    ]
+                }                
+            }
+        }
+    <<<),
+
+    "gi0.PINF.it/build/v0 @ # onDone()": (inf () >>>
+        {
+            "gi0.PINF.it/core/v0 @ # :runner: set() extensionPath": ".extension.built",
+
+            "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+        }
+    <<<)
+}

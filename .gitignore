@@ -5,3 +5,5 @@
 .rt/
 .~*
 /package-lock.json
+
+/examples/*/.extension.built/

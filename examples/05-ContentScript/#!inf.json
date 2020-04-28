@@ -1,0 +1,105 @@
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.extension.built": "to.pinf.org.mozilla.web-ext",
+        "runner": "it.pinf.org.mozilla.web-ext"
+    },
+    ":builder:": "/.extension.built @ builder/v1",
+    ":runner:": "runner @ runner/v0",
+
+    "gi0.PINF.it/build/v0 @ # /.extension.built": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder: build() /": {
+                "homepage": "/testpage/index.html",
+                "port": 3000,
+                "manifest": {
+                    "permissions": [
+                        "webRequest",
+                        "<all_urls>"
+                    ],
+                    "content": {
+                        "scripts": [
+                            {
+                                "matches": [
+                                    "<all_urls>"
+                                ],
+                                "js": {
+                                    "content-script.js": {
+                                        "gi0.PINF.it/build/v0 # /scripts # /": {
+                                            "@it.pinf.org.mochajs # router/v1": {
+                                                "suite": "content-script",
+                                                "indexFilename": "content-script",
+                                                "indexFormat": "js",
+                                                "apiBaseUrl": "http://127.0.0.1:3000/testpage",
+                                                "tests": {
+                                                    "01-HelloWorld": function /* CodeBlock */ () {
+                
+                                                        describe('Array', function () {
+                                                            describe('#indexOf()', function () {
+                
+                                                                it('should return -1 when the value is not present [content-script]', function () {
+                                                                    chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                                });
+                                                            });
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "routes": {
+                    "^/testpage/": {
+                        "gi0.PINF.it/build/v0 # /testpage # /": {
+                            "@it.pinf.org.mochajs # router/v1": {
+                                "suite": "page",
+                                "tests": {
+                                    "01-HelloWorld": function /* CodeBlock */ () {
+                
+                                        describe('Array', function () {
+                                            describe('#indexOf()', function () {
+                
+                                                it('should return -1 when the value is not present', function () {
+                                                    chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                });
+                                            });
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "expect": {
+                    "exit": true,
+                    "conditions": [
+                        {
+                            "gi0.PINF.it/build/v0 # /testpage # /": {
+                                "@it.pinf.org.mochajs # expect/v1": {
+                                    "wait": true,
+                                    "suites": [
+                                        "content-script",
+                                        "page"
+                                    ]
+                                }
+                            }
+                        }        
+                    ]
+                }                
+            }
+        }
+    <<<),
+
+    "gi0.PINF.it/build/v0 @ # onDone()": (inf () >>>
+        {
+            "gi0.PINF.it/core/v0 @ # :runner: set() extensionPath": ".extension.built",
+
+            "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+        }
+    <<<)
+}
