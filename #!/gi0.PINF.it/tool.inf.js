@@ -5,7 +5,7 @@ exports['gi0.PINF.it/build/v0'] = async function (LIB, CLASSES) {
 
     class BuildStep extends CLASSES.BuildStep {
 
-        async onBuild (build, target, instance, home, workspace) {
+        async onBuild (result, build, target, instance, home, workspace) {
             
 // console.log("MOZILLA BUILD:", build, target, instance, home);
 
