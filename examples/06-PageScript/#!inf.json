@@ -14,6 +14,7 @@
                 "homepage": "/testpage/index.html",
                 "port": 3000,
                 "manifest": {
+                    "version": "0.0.1",
                     "permissions": [
                         "webRequest",
                         "<all_urls>"

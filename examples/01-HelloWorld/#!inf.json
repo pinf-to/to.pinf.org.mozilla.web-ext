@@ -13,6 +13,7 @@
             "gi0.PINF.it/build/v0 @ # :builder: build() /": {
 
                 "manifest": {
+                    "version": "0.0.1",
                     "permissions": [
                         "webRequest",
                         "<all_urls>"

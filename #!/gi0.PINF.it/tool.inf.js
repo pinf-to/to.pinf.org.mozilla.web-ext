@@ -19,6 +19,16 @@ exports['gi0.PINF.it/build/v0'] = async function (LIB, CLASSES) {
             config.cwd = build.path;
             config.manifest.dist = target.path;
 
+            if (config.manifest.version === '${version}') {
+
+                const descriptorPath = LIB.PATH.join(workspace.path, 'package.json');
+                if (!(await LIB.FS.exists(descriptorPath))) {
+                    throw new Error(`Could not find package descriptor at path '${descriptorPath}' needed to resolve manifest.version ''${version}'!`);
+                }
+                const descriptor = await LIB.FS.readJSON(descriptorPath);
+                config.manifest.version = descriptor.version;
+            }
+
             const runConfig = await BUILDER.build(config);
 
             const runConfigPath = LIB.PATH.join(target.path, 'run.config.json');
