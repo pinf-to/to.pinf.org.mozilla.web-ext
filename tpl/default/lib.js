@@ -50,7 +50,7 @@
                 }
                 const result = await promisifyNoErr(BROWSER.runtime.sendMessage, BROWSER.runtime)(arguments);
                 if (!result) {
-                    throw Error(BROWSER.runtime.lastError.message || BROWSER.runtime.lastError);
+                    throw new Error(BROWSER.runtime.lastError.message || BROWSER.runtime.lastError);
                 }
                 return result;
             },
