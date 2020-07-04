@@ -1,6 +1,6 @@
 {
   "name": "to.pinf.org.mozilla.web-ext",
-  "version": "0.3.0-pre.3",
+  "version": "0.3.0-pre.4",
   "pm": {
     "publish": "npm"
   },
