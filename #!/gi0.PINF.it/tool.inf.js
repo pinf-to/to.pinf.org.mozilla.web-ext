@@ -9,6 +9,10 @@ exports['gi0.PINF.it/build/v0'] = async function (LIB, CLASSES) {
             
 // console.log("MOZILLA BUILD:", build, target, instance, home);
 
+            if (typeof build.config.manifest.value === 'function') {
+                build.config.manifest = (await build.config.manifest.value()).value;
+            }
+
             const config = JSON.parse(JSON.stringify(build.config));
 
             if (config.manifest.dist) {
