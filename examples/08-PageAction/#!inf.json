@@ -1,0 +1,154 @@
+{
+    "#": "gi0.PINF.it/core/v0",
+
+    "#": {
+        "/.extension.built": "to.pinf.org.mozilla.web-ext",
+        "runner": "it.pinf.org.mozilla.web-ext"
+    },
+    ":builder:": "/.extension.built @ builder/v1",
+    ":runner:": "runner @ runner/v0",
+
+    "gi0.PINF.it/build/v0 @ # /.extension.built": (inf () >>>
+        {
+            "gi0.PINF.it/build/v0 @ # :builder: build() /": {
+                "homepage": "/testpage/index.html",
+                "port": 3000,
+                "manifest": {
+                    "version": "0.0.1",
+                    "permissions": [
+                        "activeTab",
+                        "webRequest",
+                        "<all_urls>"
+                    ],
+                    "icons": {
+                        "48": "./box.png"
+                    },
+                    "background": {
+                        "scripts": [
+                            {
+                                "worker.js": {
+                                    "gi0.PINF.it/build/v0 # /scripts # /": {
+                                        "@it.pinf.org.mochajs # router/v1": {
+                                            "suite": "worker",
+                                            "indexFilename": "worker",
+                                            "apiBaseUrl": "http://127.0.0.1:3000/testpage",
+                                            "tests": {
+                                                "01-HelloWorld": function /* CodeBlock */ () {
+
+                                                    function show (tabId) {
+                                                        if (!tabId || tabId === -1) return;
+
+                                                        console.log("show page action", tabId);
+
+                                                        WINDOW.crossbrowser.pageAction.show(tabId).then(function (result) {
+                                                            // NOTE: This does not work as the page action popup can only be opened from a user-initiated click.
+                                                            // WINDOW.crossbrowser.pageAction.openPopup();
+                                                        });
+                                                    }
+
+                                                    WINDOW.crossbrowser.tabs.onActivated.addListener(function (activeInfo) {
+                                                        show(activeInfo.tabId);
+                                                    });
+                                                    WINDOW.crossbrowser.tabs.onUpdated.addListener(show);
+                                                    WINDOW.crossbrowser.tabs.query({
+                                                        active: true
+                                                    }).then(function (result) {
+                                                        if (result.length === 1) show(result[0].id);
+                                                    });
+
+                                                    describe('Array', function () {
+                                                        describe('#indexOf()', function () {
+                
+                                                            it('should return -1 when the value is not present', function () {
+                                                                chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    },                    
+                    "page": {
+                        "action": {
+                            "page-action.js": {
+                                "code": {
+                                    "gi0.PINF.it/build/v0 # /scripts # /": {
+                                        "@it.pinf.org.mochajs # router/v1": {
+                                            "suite": "page-action",
+                                            "indexFilename": "page-action",
+                                            "apiBaseUrl": "http://127.0.0.1:3000/testpage",
+                                            "tests": {
+                                                "01-HelloWorld": function /* CodeBlock */ () {
+                    
+                                                    describe('Array', function () {
+                                                        describe('#indexOf()', function () {
+                    
+                                                            it('should return -1 when the value is not present', function () {
+                                                                chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "routes": {
+                    "^/testpage/": {
+                        "gi0.PINF.it/build/v0 # /testpage # /": {
+                            "@it.pinf.org.mochajs # router/v1": {
+                                "suite": "page",
+                                "tests": {
+                                    "01-HelloWorld": function /* CodeBlock */ () {
+                
+                                        describe('Array', function () {
+                                            describe('#indexOf()', function () {
+                
+                                                it('should return -1 when the value is not present', function () {
+                                                    chai.assert.equal(-1, [1,2,3].indexOf(4));
+                                                });
+                                            });
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "expect": {
+                    "exit": true,
+                    "conditions": [
+                        {
+                            "gi0.PINF.it/build/v0 # /testpage # /": {
+                                "@it.pinf.org.mochajs # expect/v1": {
+                                    "wait": true,
+                                    "suites": [
+                                        "page-action",
+                                        "page",
+                                        "worker"
+                                    ]
+                                }
+                            }
+                        }        
+                    ]
+                }                
+            }
+        }
+    <<<),
+
+    "gi0.PINF.it/build/v0 @ # onDone()": (inf () >>>
+        {
+            "gi0.PINF.it/core/v0 @ # :runner: set() extensionPath": ".extension.built",
+
+            "gi0.PINF.it/core/v0 @ # :runner: run()": ""
+        }
+    <<<)
+}

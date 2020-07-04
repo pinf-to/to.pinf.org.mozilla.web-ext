@@ -4,6 +4,7 @@
 *~.compiled.*
 .rt/
 .~*
+.DS_Store
 /package-lock.json
 
 /examples/*/.extension.built/

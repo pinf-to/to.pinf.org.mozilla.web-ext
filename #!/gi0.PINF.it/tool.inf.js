@@ -29,6 +29,28 @@ exports['gi0.PINF.it/build/v0'] = async function (LIB, CLASSES) {
                 config.manifest.version = descriptor.version;
             }
 
+
+
+            // TODO: Build 2 versions, one for firefox and one for chrome
+
+            if (config.targetApplication) {
+                let targetProperties = {};
+                Object.keys(config.manifest).forEach(function (name) {
+                    const m = name.match(/^([^\[]+)\[([^\]]+)\]$/);
+                    if (m) {
+                        targetProperties[m[2]] = targetProperties[m[2]] || {};
+                        targetProperties[m[2]][m[1]] = config.manifest[name];
+                        delete config.manifest[name];
+                    }
+                });
+                LIB.LODASH.mergeWith(config.manifest, targetProperties[config.targetApplication], function (objValue, srcValue) {
+                    if (Array.isArray(objValue)) {
+                    return objValue.concat(srcValue);
+                    }
+                });
+            }
+
+
             const runConfig = await BUILDER.build(config);
 
             const runConfigPath = LIB.PATH.join(target.path, 'run.config.json');
